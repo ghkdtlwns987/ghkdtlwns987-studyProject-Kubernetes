@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+ name: ingress-study-front
+ namespace: study-api
+ annotations:
+   #nginx.ingress.kubernetes.io/upstream-hash-by: "true"
+spec:
+ ingressClassName: nginx
+ rules:
+ - http:
+     paths:
+     - path: /members/v1/api
+       pathType: Prefix
+       backend:
+         service:
+           name: study-api-svc
+           port:
+             number: 9000
+     - path: /v1/api/project
+       pathType: Prefix
+       backend:
+         service:
+           name: study-api-svc
+           port:
+             number: 9000

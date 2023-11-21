@@ -1,0 +1,33 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: study-front
+  namespace: study-front
+  labels:
+    app: study-api
+spec:
+  scaleTargetRef:  # Scale Out Target
+    apiVersion: apps/v1
+    kind: Deployment
+    name: study-front
+
+  minReplicas: 1
+  maxReplicas: 3
+
+  # AutoScailing
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50  # CPU 10%
+
+status:
+  observedGeneration: 1
+  currentReplicas: 1
+  desiredReplicas: 3
+  currentMetrics:
+  - type: Resource
+    resource:
+      name: cpu

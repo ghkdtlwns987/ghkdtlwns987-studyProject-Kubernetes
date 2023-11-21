@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: study-front
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: study-front
+  namespace: study-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: study-front
+  template:
+    metadata:
+      labels:
+        app: study-front
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      containers:
+        - name: study-front
+          image: 600359243171.dkr.ecr.ap-northeast-2.amazonaws.com/ghkdtlwns987-test-frontserver:latest
+          ports:
+            - containerPort: 8889
+      imagePullSecrets:
+        - name: ap-northeast-2-ecr-registry

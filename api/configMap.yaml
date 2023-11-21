@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-dev
+  namespace: study-api
+data:
+  DB_URL: localhost
+  DB_USER: myuser
+  DB_PASS: mypass
+  DEBUG_INFO: debug
+  loglevel: DEBUG
+  authentication: http://localhost:8000/authentication
+  authorization: http://localhost:8000/authorization
+  member: http://localhost:8000/members
+  jenkins: http://117.16.17.165:30000
+  jenkins_user: k8s_jenkins165
+  jenkins_token: "11c3e76f61b7258dfb5e457d66bc05f64b"
+  filepath: ./
+  prometheus: "8300"
+  jwt: "asdjklfasdfhj123948y128907md49810274s902187m2xio131234bo1ui23yu4mv21poi"
+
